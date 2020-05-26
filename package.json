@@ -1,0 +1,65 @@
+{
+  "name": "laravel-js-str",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "all": "npm run build && npm test",
+    "pretest": "npm run transpile",
+    "test": "mocha test/tests.js",
+    "transpile": "babel src --quiet --out-dir dist",
+    "readme": "node bundler/bundle.js",
+    "bundle": "webpack-cli dist/index.js --output build/index.js --mode development --output-library laravelJsStr",
+    "uglify": "uglifyjs build/index.js --compress --mangle --output build/index.min.js",
+    "build": "npm run transpile && npm run bundle && npm run uglify && npm run readme",
+    "coverage": "npm run transpile && nyc mocha test/tests.js",
+    "reporter": "nyc report --reporter=html",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "prepublishOnly": "npm run all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhorton34/laravel-js-str.git"
+  },
+  "keywords": [
+    "laravel",
+    "js",
+    "str",
+    "illuminate str",
+    "illuminate fluent",
+    "illuminate stringify",
+    "laraveljs",
+    "illuminate js"
+  ],
+  "author": "Zachary Horton",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhorton34/laravel-js-str/issues"
+  },
+  "homepage": "https://github.com/zhorton34/laravel-js-str#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "benchmark": "^2.1.0",
+    "chai": "^4.2.0",
+    "hoax.js": "^1.0.0",
+    "locutus": "^2.0.11",
+    "mocha": "^3.5.2",
+    "nyc": "^11.0.2",
+    "uglify-js": "^3.2.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
