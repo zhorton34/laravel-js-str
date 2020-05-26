@@ -56,6 +56,60 @@ class Str
 	{
 		return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(subject.indexOf(search) + search.length);
 	}
+
+	/**
+	 * Returns the remainder of a string after the last occurrence of a given value
+	 *
+	 * @param subject
+	 * @param search
+	 *
+	 * @return string
+	 */
+	static afterLast(subject, search = '')
+	{
+		return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(subject.lastIndexOf(search) + search.length);
+	}
+
+	/**
+	 * Get the portion of a string before the first occurrence of a given value
+	 *
+	 * @param subject
+	 * @param search
+	 *
+	 * @return string
+	 */
+	static before(subject, search = '')
+	{
+		return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(0, subject.indexOf(search));
+	}
+
+	/**
+	 * Get the portion of a string before the last occurrence of a given value
+	 *
+	 * @param subject
+	 * @param search
+	 *
+	 * @return string
+	 */
+	static beforeLast(subject, search = '')
+	{
+		return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(0, subject.lastIndexOf(search));
+	}
+
+	/**
+	 * Get the portion of a string between two given values
+	 *
+	 * @param subject
+	 * @param at
+	 * @param to
+	 *
+	 * @return string
+	 */
+	static between(subject, at = '', to = '')
+	{
+		return subject.indexOf(at) === -1 || subject.indexOf(to) === -1 ? subject : Str.beforeLast(Str.after(subject, at), to);
+	}
+
 }
 
 module.exports.Str = Str;
