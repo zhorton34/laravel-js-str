@@ -143,6 +143,40 @@ var Str = /*#__PURE__*/function () {
       return Str.camelCache[value] = "".concat(studly[0].toLowerCase()).concat(studly.slice(1));
     }
     /**
+     * Determine if a given string contains a given substring.
+     *
+     * @param haystack
+     * @param needles
+     *
+     * @return boolean
+     */
+
+  }, {
+    key: "contains",
+    value: function contains(haystack) {
+      var needles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return Array.isArray(needles) ? needles.some(function (needle) {
+        return haystack.includes(needle);
+      }) : haystack.includes(needles);
+    }
+    /**
+     * Determine if a given string contains all array values
+     *
+     * @param haystack
+     * @param needles[]
+     *
+     * @return boolean
+     */
+
+  }, {
+    key: "containsAll",
+    value: function containsAll(haystack) {
+      var needles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return needles.every(function (needle) {
+        return haystack.includes(needle);
+      });
+    }
+    /**
      * Convert a value to studly caps case
      *
      * @param value

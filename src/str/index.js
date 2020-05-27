@@ -129,6 +129,32 @@ class Str
 	}
 
 	/**
+	 * Determine if a given string contains a given substring.
+	 *
+	 * @param haystack
+	 * @param needles
+	 *
+	 * @return boolean
+	 */
+	static contains(haystack, needles = [])
+	{
+		return Array.isArray(needles) ? needles.some(needle => haystack.includes(needle)) : haystack.includes(needles);
+	}
+
+	/**
+	 * Determine if a given string contains all array values
+	 *
+	 * @param haystack
+	 * @param needles[]
+	 *
+	 * @return boolean
+	 */
+	static containsAll(haystack, needles = [])
+	{
+		return needles.every(needle => haystack.includes(needle));
+	}
+
+	/**
 	 * Convert a value to studly caps case
 	 *
 	 * @param value
