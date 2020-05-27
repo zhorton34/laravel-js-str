@@ -4,9 +4,9 @@
 const { Str } = require('../../src/str/index.js');
 
 module.exports = (it, expect) => {
-	it('Should return string length', () => {
-		expect(Str.length('hey')).to.eql(3);
-		expect(Str.length('')).to.eql(0);
-		expect(Str.length('hello_world_earth')).to.eql(17);
+	it('Should return limited words', () => {
+		expect(Str.words('hey world how are you?', 3)).to.eql('hey world how...');
+		expect(Str.words('hey world how are you?')).to.eql('hey world how are you?');
+		expect(Str.words('hello world how are you', 2, '~')).to.eql('hello world~');
 	})
 };

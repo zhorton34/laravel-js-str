@@ -4,14 +4,13 @@
 const { Str } = require('../../src/str/index.js');
 
 module.exports = (it, expect) => {
-	it('Should return format a string to kebab case', () => {
-		expect(Str.kebab('hello world')).to.eql('hello-world');
-		expect(Str.kebab('hello world earth')).to.eql('hello-world-earth');
-		expect(Str.kebab('hello_world_earth')).to.eql('hello-world-earth');
-		expect(Str.kebab('HelloWorldEarth')).to.eql('hello-world-earth');
-		expect(Str.kebab('hello-world-earth')).to.eql('hello-world-earth');
-		expect(Str.kebab('HelloWorldEarth')).to.eql('hello-world-earth');
-		expect(Str.kebab('Hello world Earth')).to.eql('hello-world-earth');
-		expect(Str.kebab('helloWorldEarth')).to.eql('hello-world-earth');
+	it('Should return upper case of string', () => {
+		expect(Str.upper('hello world')).to.eql('HELLO WORLD');
+		expect(Str.upper('hello world earth')).to.eql('HELLO WORLD EARTH');
+		expect(Str.upper('hello_world_earth')).to.eql('HELLO_WORLD_EARTH');
+		expect(Str.upper('HelloWorldEarth')).to.eql('HELLOWORLDEARTH');
+		expect(Str.upper('hello-world-earth')).to.eql('HELLO-WORLD-EARTH');
+		expect(Str.upper('Hello world Earth')).to.eql('HELLO WORLD EARTH');
+		expect(Str.upper('helloWorldEarth')).to.eql('HELLOWORLDEARTH');
 	})
 };
