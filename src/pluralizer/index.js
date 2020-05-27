@@ -87,9 +87,9 @@ class Pluralizer
 	 */
 	static singular(value)
 	{
-		const singular = Pluralizer.inflector().singular(value);
+		let single = Pluralizer.inflector().singular(value);
 
-		return Pluralizer.matchCase(value, singular);
+		return Pluralizer.matchCase(single, value);
 	}
 
 	/**

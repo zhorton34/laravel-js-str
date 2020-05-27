@@ -4,16 +4,11 @@
 const { v4: uuidv4 } = 'uuid';
 const { preg_match } = require('locutus/php/pcre');
 const { ctype_lower } = require('locutus/php/ctype');
-const { substr_count } = require('locutus/php/strings');
 const { Pluralizer } = require('../pluralizer/index.js');
+const { explode, substr_count } = require('locutus/php/strings');
 
 // const { stringable } = require('../Stringable/index.js');
 
-const explode = (array = [], delimiter, limit = null) => {
-	return limit === null
-		? array.split(delimiter)
-		: [array.split(delimiter)[0], array.split(delimiter).slice(limit).join(" ")];
-};
 
 class Str
 {
@@ -414,9 +409,9 @@ class Str
 		let alpha_numeric = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 
 		for (let i = 0; i < length; i++) {
-			let character_index = Math.floor(Math.random() * alpha_numeric.length);
+			let character_index = Math.floor(Math.random() * Math.floor(alpha_numeric.length));
 
-			random += alpha_numeric.substr(character_index, character_index + 1);
+			random += alpha_numeric.slice(character_index, character_index + 1);
 		}
 
 		return random;
@@ -437,7 +432,7 @@ class Str
 			throw Error("Str.replaceArray requires that parameter two (replace) is an array. Passed In: " + JSON.stringify(replace));
 		}
 
-		return replace.reduce((value, replacer) => subject.replace(search, replacer), subject);
+		return replace.reduce((value, replacer) => value.replace(search, replacer), subject);
 	}
 
 	/**
@@ -462,7 +457,7 @@ class Str
 		}
 
 		const start = subject.substr(0, search_index);
-		const after = subject.substr(search_index, subject.length);
+		const after = subject.substr(search_index + search.length, subject.length);
 
 		return `${start}${replace}${after}`;
 	}
@@ -489,7 +484,7 @@ class Str
 		}
 
 		const start = subject.substr(0, search_index);
-		const after = subject.substr(search_index, subject.length);
+		const after = subject.substr(search_index + search.length, subject.length);
 
 		return `${start}${replace}${after}`;
 	}
@@ -504,7 +499,7 @@ class Str
 	 */
 	static start(value, prefix)
 	{
-		return Str.startsWith(value, prefix) ? value : `${value}${prefix}`;
+		return Str.startsWith(value, prefix) ? value : `${prefix}${value}`;
 	}
 
 	/**
@@ -550,7 +545,7 @@ class Str
 	 */
 	static title(value)
 	{
-		return Str.snake(value).split('_').map(word => Str.upper(word)).join(' ');
+		return Str.snake(value).split('_').map(word => Str.ucfirst(word)).join(' ');
 	}
 
 	/**
@@ -576,10 +571,11 @@ class Str
 	{
 		title = title.toLocaleString();
 
-		return Str.snake(title)
+		let slug = Str.snake(title.replace(/@/g, '_at_'))
 			.replace(/_/g, separator)
-			.replace(/@/g, `${separator}at${separator}`)
 			.trim();
+
+		return slug[0] === separator ? slug.slice(1, slug.length) : slug;
 	}
 
 	/**
@@ -593,7 +589,7 @@ class Str
 	static startsWith(haystack, needles = [])
 	{
 		return Array.isArray(needles)
-			? needles.some(needle => haystack.substr(-needle.length) === needle)
+			? needles.some(needle => haystack.startsWith(needle))
 			: haystack.substr(0, needles.length) === needles;
 	}
 
@@ -608,7 +604,7 @@ class Str
 	 */
 	static substr(string, start, length = null)
 	{
-		return string.slice(start, length);
+		return string.slice(start, start + length);
 	}
 
 	/**
