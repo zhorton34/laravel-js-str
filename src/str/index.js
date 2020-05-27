@@ -6,8 +6,7 @@ const { preg_match } = require('locutus/php/pcre');
 const { ctype_lower } = require('locutus/php/ctype');
 const { Pluralizer } = require('../pluralizer/index.js');
 const { explode, substr_count } = require('locutus/php/strings');
-
-// const { stringable } = require('../Stringable/index.js');
+const { Stringable } = require('../Stringable/index.js');
 
 
 class Str
@@ -40,16 +39,16 @@ class Str
 	 */
 	static uuidFactory;
 
-	// /**
-	//  * Get a new stringable object from the given string.
-	//  *
-	//  * @param string string
-	//  * @return Stringable
-	//  */
-	// static of(string)
-	// {
-	// 	return new Stringable(string);
-	// }
+	/**
+	 * Get a new stringable object from the given string.
+	 *
+	 * @param string string
+	 * @return Stringable
+	 */
+	static of(string)
+	{
+		return new Stringable(string);
+	}
 
 	/**
 	 * Return the remainder of a string after the first occurrence of a given value

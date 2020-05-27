@@ -46,8 +46,10 @@ var _require3 = require('../pluralizer/index.js'),
 
 var _require4 = require('locutus/php/strings'),
     explode = _require4.explode,
-    substr_count = _require4.substr_count; // const { stringable } = require('../Stringable/index.js');
+    substr_count = _require4.substr_count;
 
+var _require5 = require('../Stringable/index.js'),
+    Stringable = _require5.Stringable;
 
 var Str = /*#__PURE__*/function () {
   function Str() {
@@ -55,7 +57,7 @@ var Str = /*#__PURE__*/function () {
   }
 
   _createClass(Str, null, [{
-    key: "after",
+    key: "of",
 
     /**
      * The cache of snake-cased words
@@ -80,17 +82,16 @@ var Str = /*#__PURE__*/function () {
      *
      * @var callback
      */
-    // /**
-    //  * Get a new stringable object from the given string.
-    //  *
-    //  * @param string string
-    //  * @return Stringable
-    //  */
-    // static of(string)
-    // {
-    // 	return new Stringable(string);
-    // }
 
+    /**
+     * Get a new stringable object from the given string.
+     *
+     * @param string string
+     * @return Stringable
+     */
+    value: function of(string) {
+      return new Stringable(string);
+    }
     /**
      * Return the remainder of a string after the first occurrence of a given value
      *
@@ -99,6 +100,9 @@ var Str = /*#__PURE__*/function () {
      *
      * @return string
      */
+
+  }, {
+    key: "after",
     value: function after(subject) {
       var search = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
       return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(subject.indexOf(search) + search.length);
