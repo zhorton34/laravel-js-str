@@ -177,6 +177,54 @@ var Str = /*#__PURE__*/function () {
       });
     }
     /**
+     * Determine if a given string ends with a given substring
+     *
+     * @param haystack
+     * @param needles
+     *
+     * @return boolean
+     */
+
+  }, {
+    key: "endsWith",
+    value: function endsWith(haystack) {
+      var needles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return Array.isArray(needles) ? needles.some(function (needle) {
+        return haystack.substr(-needle.length) === needle;
+      }) : haystack.substr(-needles.length) === needles;
+    }
+    /**
+     * Cap a string with a single instance of a given value if it doesnt already end with it
+     *
+     * @param value
+     * @param cap
+     *
+     * @return string
+     */
+
+  }, {
+    key: "finish",
+    value: function finish(value, cap) {
+      return Str.endsWith(value, cap) ? value : "".concat(value).concat(cap);
+    }
+    /**
+     * Determine if a given string matches a given pattern
+     *
+     * @param pattern
+     * @param value
+     *
+     * @return boolean
+     */
+
+  }, {
+    key: "is",
+    value: function is(pattern, value) {
+      var patterns = Array.isArray(pattern) ? pattern : [pattern];
+      return patterns.some(function (pattern) {
+        if (value === pattern) return true;else if (pattern.includes('*') === false) return new RegExp(pattern).test(value);else if (pattern.includes('*')) return new RegExp(pattern.replace(/\*/g, '.*')).test(value);
+      });
+    }
+    /**
      * Convert a value to studly caps case
      *
      * @param value

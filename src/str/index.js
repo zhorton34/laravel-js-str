@@ -2,7 +2,6 @@
 'use strict';
 
 // const { stringable } = require('../Stringable/index.js');
-
 class Str
 {
 	/**
@@ -152,6 +151,53 @@ class Str
 	static containsAll(haystack, needles = [])
 	{
 		return needles.every(needle => haystack.includes(needle));
+	}
+
+	/**
+	 * Determine if a given string ends with a given substring
+	 *
+	 * @param haystack
+	 * @param needles
+	 *
+	 * @return boolean
+	 */
+	static endsWith(haystack, needles = [])
+	{
+		return Array.isArray(needles)
+			? needles.some(needle => haystack.substr(-needle.length) === needle)
+			: haystack.substr(-needles.length) === needles;
+	}
+
+	/**
+	 * Cap a string with a single instance of a given value if it doesnt already end with it
+	 *
+	 * @param value
+	 * @param cap
+	 *
+	 * @return string
+	 */
+	static finish(value, cap)
+	{
+		return Str.endsWith(value, cap) ? value : `${value}${cap}`;
+	}
+
+	/**
+	 * Determine if a given string matches a given pattern
+	 *
+	 * @param pattern
+	 * @param value
+	 *
+	 * @return boolean
+	 */
+	static is(pattern, value)
+	{
+		let patterns = Array.isArray(pattern) ? pattern : [pattern];
+
+		return patterns.some(pattern => {
+			if (value === pattern) return true;
+			else if (pattern.includes('*') === false) return (new RegExp(pattern).test(value));
+			else if (pattern.includes('*')) return (new RegExp(pattern.replace(/\*/g, '.*'))).test(value);
+		});
 	}
 
 	/**
