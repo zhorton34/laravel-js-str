@@ -4,8 +4,16 @@
 const { v4: uuidv4 } = 'uuid';
 const { preg_match } = require('locutus/php/pcre');
 const { ctype_lower } = require('locutus/php/ctype');
+const { substr_count } = require('locutus/php/strings');
+const { Pluralizer } = require('../pluralizer/index.js');
 
 // const { stringable } = require('../Stringable/index.js');
+
+const explode = (array = [], delimiter, limit = null) => {
+	return limit === null
+		? array.split(delimiter)
+		: [array.split(delimiter)[0], array.split(delimiter).slice(limit).join(" ")];
+};
 
 class Str
 {
@@ -293,6 +301,212 @@ class Str
 		return Str.snakeCache[key][delimiter];
 	}
 
+
+	/**
+	 * Return the length of the given string
+	 *
+	 * @param value
+	 * @param encoding
+	 *
+	 * @return int
+	 *
+	 * @TODO add encoding option
+	 */
+	static length(value = '', encoding = null)
+	{
+		return value.length;
+	}
+
+
+	/**
+	 * Limit the number of characters in a string
+	 *
+	 * @param value
+	 * @param limit
+	 * @param end
+	 *
+	 * @return string
+	 */
+	static limit(value = '', limit = 100, end = '...')
+	{
+		return value.length < limit ? value : value.slice(0, limit) + end;
+	}
+
+	/**
+	 * Convert the given string to lower-case.
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static lower(value = '')
+	{
+		return value.toLocaleLowerCase();
+	}
+
+	/**
+	 * Limit the number of words in a string.
+	 *
+	 * @param value
+	 * @param words
+	 * @param end
+	 *
+	 * @return string
+	 */
+	static words(value = '', words = 100, end = '...')
+	{
+		let word = value.split(' ');
+
+		return word.length <= words ? value : word.slice(0, words).join(" ") + end;
+	}
+
+	/**
+	 * Parse a Class[@]method style callback into class and method.
+	 *
+	 * @param callback
+	 * @param fallback
+	 *
+	 * @return array
+	 */
+	static parseCallback(callback, fallback = null)
+	{
+		return Str.contains(callback, '@') ? explode('@', callback, 2) : [callback, fallback];
+	}
+
+	/**
+	 * Get the plural form of an english word
+	 *
+	 * @param value
+	 * @param count
+	 *
+	 * @return string
+	 */
+	static plural(value, count = 2)
+	{
+		return Pluralizer.plural(value, count);
+	}
+
+	/**
+	 * Pluralize the last word of an English, studly caps case string.
+	 *
+	 * @param value
+	 * @param count
+	 *
+	 * @return string
+	 */
+	static pluralStudly(value, count = 2)
+	{
+		const [until, last_word] = value.split(/(?=[A-Z][^A-Z]+$)/);
+
+		return until + Str.plural(last_word, count);
+	}
+
+	/**
+	 * Generate a more truly "random" alpha-numeric string.
+	 *
+	 * @param length
+	 *
+	 * @return string
+	 */
+	static random(length = 16)
+	{
+		let random = '';
+		let alpha_numeric = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+
+		for (let i = 0; i < length; i++) {
+			let character_index = Math.floor(Math.random() * alpha_numeric.length);
+
+			random += alpha_numeric.substr(character_index, character_index + 1);
+		}
+
+		return random;
+	}
+
+	/**
+	 * Replace a given value in the string sequentially with an array.
+	 *
+	 * @param search
+	 * @param replace
+	 * @param subject
+	 *
+	 * @return string
+	 */
+	static replaceArray(search, replace = [], subject)
+	{
+		if (Array.isArray(replace) === false) {
+			throw Error("Str.replaceArray requires that parameter two (replace) is an array. Passed In: " + JSON.stringify(replace));
+		}
+
+		return replace.reduce((value, replacer) => subject.replace(search, replacer), subject);
+	}
+
+	/**
+	 * Replace the first occurrence of a given value in the string.
+	 *
+	 * @param search
+	 * @param replace
+	 * @param subject
+	 *
+	 * @return string
+	 */
+	static replaceFirst(search, replace, subject)
+	{
+		if (search === '') {
+			return subject;
+		}
+
+		const search_index = subject.indexOf(search);
+
+		if (search_index === -1) {
+			return subject;
+		}
+
+		const start = subject.substr(0, search_index);
+		const after = subject.substr(search_index, subject.length);
+
+		return `${start}${replace}${after}`;
+	}
+
+	/**
+	 * Replace the last occurrence of a given value in the string
+	 *
+	 * @param search
+	 * @param replace
+	 * @param subject
+	*
+	 * @returns string
+	 */
+	static replaceLast(search, replace, subject)
+	{
+		if (search === '') {
+			return subject;
+		}
+
+		const search_index = subject.lastIndexOf(search);
+
+		if (search_index === -1) {
+			return subject;
+		}
+
+		const start = subject.substr(0, search_index);
+		const after = subject.substr(search_index, subject.length);
+
+		return `${start}${replace}${after}`;
+	}
+
+	/**
+	 * Begin a string with a single instance of a given value.
+	 *
+	 * @param value
+	 * @param prefix
+	 *
+	 * @return string
+	 */
+	static start(value, prefix)
+	{
+		return Str.startsWith(value, prefix) ? value : `${value}${prefix}`;
+	}
+
 	/**
 	 * Convert a value to studly caps case
 	 *
@@ -313,6 +527,107 @@ class Str
 			.replace(/-/g, ' ')
 			.split(' ')
 			.reduce((str, word) => `${str}${word[0].toUpperCase()}${word.slice(1)}`, '');
+	}
+
+	/**
+	 * Convert the given string to upper-case
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static upper(value)
+	{
+		return value.toLocaleUpperCase();
+	}
+
+	/**
+	 * Convert the given string to title case.
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static title(value)
+	{
+		return Str.snake(value).split('_').map(word => Str.upper(word)).join(' ');
+	}
+
+	/**
+	 * Get the singular form of an English word.
+	 *
+	 * @param value
+	 * @return string
+	 */
+	static singular(value)
+	{
+		return Pluralizer.singular(value);
+	}
+
+	/**
+	 * Generate a URL friendly "slug" from a given string.
+	 *
+	 * @param  title
+	 * @param  separator
+	 *
+	 * @return string
+	 */
+	static slug(title, separator = '-')
+	{
+		title = title.toLocaleString();
+
+		return Str.snake(title)
+			.replace(/_/g, separator)
+			.replace(/@/g, `${separator}at${separator}`)
+			.trim();
+	}
+
+	/**
+	 * Determine if a given string starts with a given substring
+	 *
+	 * @param haystack
+	 * @param needles
+	 *
+	 * @return boolean
+	 */
+	static startsWith(haystack, needles = [])
+	{
+		return Array.isArray(needles)
+			? needles.some(needle => haystack.substr(-needle.length) === needle)
+			: haystack.substr(0, needles.length) === needles;
+	}
+
+	/**
+	 * Returns the portion of string specified by the start and length parameters
+	 *
+	 * @param string
+	 * @param start
+	 * @param length
+	 *
+	 * @return string
+	 */
+	static substr(string, start, length = null)
+	{
+		return string.slice(start, length);
+	}
+
+	/**
+	 * Returns the number of substring occurrences
+	 *
+	 * @param haystack
+	 * @param needle
+	 * @param offset
+	 * @param length
+	 *
+	 * @return int
+	 */
+	static substrCount(haystack, needle, offset, length = null)
+	{
+		if (length === null) {
+			return substr_count(haystack, needle, offset);
+		} else {
+			return substr_count(haystack, needle, offset, length);
+		}
 	}
 
 	/**
