@@ -1,7 +1,12 @@
 
 'use strict';
 
+const { v4: uuidv4 } = 'uuid';
+const { preg_match } = require('locutus/php/pcre');
+const { ctype_lower } = require('locutus/php/ctype');
+
 // const { stringable } = require('../Stringable/index.js');
+
 class Str
 {
 	/**
@@ -67,6 +72,19 @@ class Str
 	static afterLast(subject, search = '')
 	{
 		return search === '' || subject.indexOf(search) === -1 ? subject : subject.substr(subject.lastIndexOf(search) + search.length);
+	}
+
+	/**
+	 * Transliterate a UTF-8 value to ASCII.
+	 *
+	 * @param value
+	 * @param language
+	 *
+	 * @return string
+	 */
+	static ascii(value = '', language = 'en')
+	{
+		return String.fromCharCode(...value.split('').map(character => character.charCodeAt(0)));
 	}
 
 	/**
@@ -201,6 +219,81 @@ class Str
 	}
 
 	/**
+	 * Determine if a given string is 7 bit ASCII
+	 *
+	 * @param value
+	 * @returns boolean
+	 */
+	static isAscii(value) {
+		// extended Ascii pattern /^[\x00-\xFF]*$/
+		// 128 char Ascii pattern /^[\x00-\x7F]*$/
+		return /^[\x00-\xFF]*$/.test(String(value));
+	}
+
+	/**
+	 * Determine if a given string is valid UUID.
+	 *
+	 * @param value
+	 *
+	 * @return boolean
+	 */
+	static isUuid(value)
+	{
+		if (typeof value !== 'string') {
+			return false;
+		}
+
+		return preg_match('/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iD', value) > 0;
+	}
+
+	/**
+	 * Convert a string to kebab case.
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static kebab(value)
+	{
+		return Str.snake(value, '-');
+	}
+
+
+
+	/**
+	 * Convert a string to snake case.
+	 *
+	 * @param value
+	 * @param delimiter
+	 *
+	 * @return string
+	 */
+	static snake(value, delimiter = '_')
+	{
+		let key = value;
+
+		if (typeof Str.snakeCache?.[key]?.[delimiter] !== 'undefined') {
+			return Str.snakeCache[key][delimiter];
+		}
+
+		if (! ctype_lower(value)) {
+			Str.snakeCache[key] = {
+				...(Str.snakeCache[key] || {}),
+				[delimiter]: value.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(x => x.toLowerCase()).join(delimiter),
+			};
+
+			return Str.snakeCache[key][delimiter];
+		}
+
+		Str.snakeCache[key] = {
+			...(Str.snakeCache[key] || {}),
+			[delimiter]: value,
+		};
+
+		return Str.snakeCache[key][delimiter];
+	}
+
+	/**
 	 * Convert a value to studly caps case
 	 *
 	 * @param value
@@ -220,6 +313,78 @@ class Str
 			.replace(/-/g, ' ')
 			.split(' ')
 			.reduce((str, word) => `${str}${word[0].toUpperCase()}${word.slice(1)}`, '');
+	}
+
+	/**
+	 * Make a strings first character upper case.
+	 *
+	 * @param value
+	 *
+	 * @return value
+	 */
+	static ucfirst(value = '')
+	{
+		if (value.length === 0) return value;
+		if (value.length === 1) return value[0].toUpperCase();
+
+		return value[0].toUpperCase() + value.slice(1);
+	}
+
+	/**
+	 * @TODO orderedUUID
+	 * (Datetime > Decimal > Hex)-(variant)->(uuidv4 version)-(uuidv4 variant)
+	 * @see https://itnext.io/laravel-the-mysterious-ordered-uuid-29e7500b4f8
+	 **/
+	//
+	// /**
+	//  * Generate a time-ordered UUID (version 4).
+	//  *
+	//  * @return uuid
+	//  */
+	// static orderedUuid() {
+	// 	if (typeof Str.uuidFactory !== 'undefined') {
+	// 		return Str.uuidFactory();
+	// 	}
+	// }
+
+	/**
+	 * Generate a UUID (version 4).
+	 *
+	 * @return string
+	 */
+	static uuid()
+	{
+		return typeof Str.uuidFactory === 'undefined'
+			? uuidv4()
+			: Str.uuidFactory();
+	}
+
+
+
+	/**
+	 * Set the callable that will be used to generate UUIDs.
+	 *
+	 * @param factory
+	 *
+	 * @return void
+	 */
+	static createUuidsUsing(factory = null)
+	{
+		if (typeof factory !== 'function' && factory !== null) {
+			throw Error('create uuidsUsing only excepts functions.');
+		}
+
+		Str.uuidFactory = factory;
+	}
+
+	/**
+	 * Indicate that UUIDs should be created normally and not using a custom factory.
+	 *
+	 * @return void
+	 */
+	static createUuidsNormally()
+	{
+		Str.uuidFactory = null;
 	}
 }
 
