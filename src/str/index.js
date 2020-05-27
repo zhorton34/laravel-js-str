@@ -8,23 +8,23 @@ class Str
 	/**
 	 * The cache of snake-cased words
 	 *
-	 * @var array
+	 * @var object
 	 */
-	static snakeCache = [];
+	static snakeCache = {};
 
 	/**
 	 * The cache of camel-cased words
 	 *
-	 * @var array
+	 * @var object
 	 */
-	static camelCache = [];
+	static camelCache = {};
 
 	/**
 	 * The cache of studly-cased words
 	 *
-	 * @var array
+	 * @var object
 	 */
-	static studlyCached = [];
+	static studlyCache = {};
 
 	/**
 	 * The callback that should be used to generate UUIDs.
@@ -110,6 +110,45 @@ class Str
 		return subject.indexOf(at) === -1 || subject.indexOf(to) === -1 ? subject : Str.beforeLast(Str.after(subject, at), to);
 	}
 
+	/**
+	 * Convert a value to camel case.
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static camel(value = '')
+	{
+		if (typeof Str.camelCache[value] !== 'undefined') {
+			return Str.camelCache[value];
+		}
+
+		let studly = Str.studly(value);
+
+		return Str.camelCache[value] = `${studly[0].toLowerCase()}${studly.slice(1)}`;
+	}
+
+	/**
+	 * Convert a value to studly caps case
+	 *
+	 * @param value
+	 *
+	 * @return string
+	 */
+	static studly(value)
+	{
+		const key = value;
+
+		if (typeof Str.studlyCache[key] !== 'undefined') {
+			return Str.studlyCache[key];
+		}
+
+		return Str.studlyCache[key] = value
+			.replace(/_/g, ' ')
+			.replace(/-/g, ' ')
+			.split(' ')
+			.reduce((str, word) => `${str}${word[0].toUpperCase()}${word.slice(1)}`, '');
+	}
 }
 
 module.exports.Str = Str;

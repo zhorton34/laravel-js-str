@@ -17,19 +17,19 @@ var Str = /*#__PURE__*/function () {
     /**
      * The cache of snake-cased words
      *
-     * @var array
+     * @var object
      */
 
     /**
      * The cache of camel-cased words
      *
-     * @var array
+     * @var object
      */
 
     /**
      * The cache of studly-cased words
      *
-     * @var array
+     * @var object
      */
 
     /**
@@ -122,12 +122,53 @@ var Str = /*#__PURE__*/function () {
       var to = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
       return subject.indexOf(at) === -1 || subject.indexOf(to) === -1 ? subject : Str.beforeLast(Str.after(subject, at), to);
     }
+    /**
+     * Convert a value to camel case.
+     *
+     * @param value
+     *
+     * @return string
+     */
+
+  }, {
+    key: "camel",
+    value: function camel() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (typeof Str.camelCache[value] !== 'undefined') {
+        return Str.camelCache[value];
+      }
+
+      var studly = Str.studly(value);
+      return Str.camelCache[value] = "".concat(studly[0].toLowerCase()).concat(studly.slice(1));
+    }
+    /**
+     * Convert a value to studly caps case
+     *
+     * @param value
+     *
+     * @return string
+     */
+
+  }, {
+    key: "studly",
+    value: function studly(value) {
+      var key = value;
+
+      if (typeof Str.studlyCache[key] !== 'undefined') {
+        return Str.studlyCache[key];
+      }
+
+      return Str.studlyCache[key] = value.replace(/_/g, ' ').replace(/-/g, ' ').split(' ').reduce(function (str, word) {
+        return "".concat(str).concat(word[0].toUpperCase()).concat(word.slice(1));
+      }, '');
+    }
   }]);
 
   return Str;
 }();
 
-Str.snakeCache = [];
-Str.camelCache = [];
-Str.studlyCached = [];
+Str.snakeCache = {};
+Str.camelCache = {};
+Str.studlyCache = {};
 module.exports.Str = Str;
