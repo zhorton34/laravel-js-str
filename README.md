@@ -21,7 +21,11 @@
 
 ## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon installation section title'/> Installation
 
+---
 
+## WIP, NOT ON NPM YET!!!
+
+---
 
 ### NPM
 
@@ -49,7 +53,7 @@ yarn add laravel-js-str --save
 ---
 Curious, but not 100% on whether this is what you're looking for? 
 
-- [Data Get With Wild Card](https://codepen.io/zhorton34/pen/jObRLdM)
+- [Laravel Illuminate/Str & Illuminate/Str::of in js (live example coming soon)](https://codepen.io/zhorton34/pen/jObRLdM)
 
 
 ---

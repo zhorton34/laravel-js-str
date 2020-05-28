@@ -2,7 +2,11 @@
 
 ## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon installation section title'/> Installation
 
+---
 
+## WIP, NOT ON NPM YET!!!
+
+---
 
 ### NPM
 

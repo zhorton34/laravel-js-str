@@ -5,11 +5,10 @@ var _require = require('collect.js'),
 
 var _require2 = require('locutus/php/strings'),
     explode = _require2.explode;
-
-var toString = Object.prototype.toString;
 /**
  * @return {string}
  */
+
 
 function Stringable(value) {
   this.value = value;
@@ -198,23 +197,20 @@ Stringable.prototype.exactly = function (value) {
 Stringable.prototype.explode = function (delimiter) {
   var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Number.MAX_SAFE_INTEGER;
   return collect(explode(delimiter, this.value, limit));
-};
-/**
- * Split a string using a regular expression.
- *
- * @param pattern
- * @param limit
- * @param flags
- *
- * @return Collection
- */
+}; // /**
+//  * Split a string using a regular expression.
+//  *
+//  * @param pattern
+//  * @param limit
+//  * @param flags
+//  *
+//  * @return Collection
+//  */
+// Stringable.prototype.split = function(pattern, limit = -1, flags = 0)
+// {
+// 	let segments = this.value.split(new RegExp(pattern));
+// };
 
-
-Stringable.prototype.split = function (pattern) {
-  var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-  var flags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var segments = this.value.split(new RegExp(pattern));
-};
 /**
  * Used when returning as a string operation
  *
@@ -223,7 +219,6 @@ Stringable.prototype.split = function (pattern) {
 
 
 Stringable.prototype.toLocaleString = function () {
-  console.log('to locale string');
   return "".concat(this.value);
 };
 /**
@@ -253,11 +248,6 @@ Stringable.prototype.toJSON = function () {
 
 Stringable.prototype.valueOf = function () {
   return "".concat(this.value);
-}; // const handler = {
-// 	get: function (target, prop, receiver) {
-// 		if ()
-// 	}
-// };
-
+};
 
 module.exports = Stringable;
