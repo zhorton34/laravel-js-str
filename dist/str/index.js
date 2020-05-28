@@ -41,15 +41,14 @@ var _require = require('locutus/php/pcre'),
 var _require2 = require('locutus/php/ctype'),
     ctype_lower = _require2.ctype_lower;
 
-var _require3 = require('../pluralizer/index.js'),
+var _require3 = require('../index.js'),
     Pluralizer = _require3.Pluralizer;
 
 var _require4 = require('locutus/php/strings'),
     explode = _require4.explode,
     substr_count = _require4.substr_count;
 
-var _require5 = require('../Stringable/index.js'),
-    Stringable = _require5.Stringable;
+var Stringable = require('../stringable/index.js');
 
 var Str = /*#__PURE__*/function () {
   function Str() {

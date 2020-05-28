@@ -10,7 +10,7 @@ let test = process.argv[process.argv.length - 1];
 test = test.replace('--', '');
 test += '.test.js';
 
-const TEST_DIRECTORIES = ['fluent', 'str', 'stringable'];
+const TEST_DIRECTORIES = ['str'];
 
 Object.entries(
     TEST_DIRECTORIES.reduce(
