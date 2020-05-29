@@ -11,7 +11,7 @@
 
 ---
 
-- Fixed Yarn/Npm Conflict Bloating Repository
+- Fixed Yarn/Npm Conflict Bloating Repository Size
 
 ---
 ---
