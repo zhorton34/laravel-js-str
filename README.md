@@ -19,37 +19,40 @@
 
 ---
 
+## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon installation section title'/> Installation
+
+---
+
+## WIP, NOT ON NPM YET!!!
+
+---
+
+### NPM
+
+```bash
+npm install --save-dev laravel-js-str
+```
+
+### Yarn
+
+```bash
+yarn add laravel-js-str --save
+```
+
+### CDN
+
+```html
+<script src='https://unpkg.com/laravel-js-str@latest/build/index.min.js'></script>
+```
+
+
+---
+
 ## Str
 
 ---
 > **Documentation For Each String Method Points To Laravel. Javascript examples are below, Laravel docs will specify what each method specifically does. Replace Str::method() with Str.() when using this package**
 
-> **The most powerful method is Str.of('example')**, it allows you to chain Str methods together
-
-**Example**
-```js
-let { Str } = require('laravel-js-str');
-
-let home = 'https://planets.com';
-let title = 'hello mars, a cool world for you to visit, maybe?';
-
-let article = Str.of(title).replaceFirst(',', '')
-    .after('hello')
-    .before('for you')
-    .trim()
-    .start('/')
-    .finish('/')
-    .kebab();
- 
-let resource = home + article
-
-// resource value: 
-// 'https://planets.com/mars-a-cool-world/'
-//
-// article value:
-// Stringable: { value: 'https://planets.com/mars-a-cool-world-to-visit', replace, before, after, etc... }
-//
-```
 - [Str.after](https://laravel.com/docs/7.x/helpers#method-str-after)
 - [Str.afterLast](https://laravel.com/docs/7.x/helpers#method-str-after-last)
 - [Str.ascii](https://laravel.com/docs/7.x/helpers#method-str-ascii)
@@ -1110,35 +1113,6 @@ let string = Str.of('Perfectly balanced, as all things should be.').words(3,  '>
 
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon installation section title'/> Installation
-
----
-
-## WIP, NOT ON NPM YET!!!
-
----
-
-### NPM
-
-```bash
-npm install --save-dev laravel-js-str
-```
-
-### Yarn
-
-```bash
-yarn add laravel-js-str --save
-```
-
-### CDN
-
-```html
-<script src='https://unpkg.com/laravel-js-str@latest/build/index.min.js'></script>
-```
-
-
----
-
 ## Playground Examples
 
 ---
@@ -1146,12 +1120,65 @@ Curious, but not 100% on whether this is what you're looking for?
 
 - [Laravel Illuminate/Str & Illuminate/Str::of in js (live example coming soon)](https://codepen.io/zhorton34/pen/jObRLdM)
 
+> **The most powerful method is Str.of('example')**, allowing us to fluently chain Str methods together
+
+**Example**
+```js
+let { Str } = require('laravel-js-str');
+
+let home = 'https://planets.com';
+let title = 'hello mars, a cool world for you to visit, maybe?';
+
+let article = Str.of(title).replaceFirst(',', '')
+    .after('hello')
+    .before('for you')
+    .trim()
+    .start('/')
+    .finish('/')
+    .kebab();
+ 
+let resource = home + article
+
+// resource value: 
+// 'https://planets.com/mars-a-cool-world/'
+//
+// article value:
+// Stringable: { value: 'https://planets.com/mars-a-cool-world-to-visit', replace, before, after, etc... }
+//
+```
+
 
 ---
 
 ## Utilization
 
 ---
+> **The most powerful method is Str.of('example')**, allowing us to fluently chain Str methods together
+
+**Example**
+```js
+let { Str } = require('laravel-js-str');
+
+let home = 'https://planets.com';
+let title = 'hello mars, a cool world for you to visit, maybe?';
+
+let article = Str.of(title).replaceFirst(',', '')
+    .after('hello')
+    .before('for you')
+    .trim()
+    .start('/')
+    .finish('/')
+    .kebab();
+ 
+let resource = home + article
+
+// resource value: 
+// 'https://planets.com/mars-a-cool-world/'
+//
+// article value:
+// Stringable: { value: 'https://planets.com/mars-a-cool-world-to-visit', replace, before, after, etc... }
+//
+```
 
 
 ---
