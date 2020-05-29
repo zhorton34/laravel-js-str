@@ -7,17 +7,5 @@ const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n')
 const ChangeLog = (content = []) => writeFileSync('CHANGELOG.md', content.join('\n\n'));
 
 ChangeLog([bundle('change_log')]);
-ReadMe([
-	'badges',
-	'header',
-	'installation',
-	'api',
-	'highlight',
-	'utilization',
-	'contribute',
-	'security_vulnerabilities',
-	'change_log',
-	'versioning',
-	'license'
-].map(bundle));
+ReadMe(['everything'].map(bundle));
 
