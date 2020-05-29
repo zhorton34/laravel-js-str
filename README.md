@@ -23,8 +23,6 @@
 
 ---
 
-## WIP, NOT ON NPM YET!!!
-
 ---
 
 ### NPM
