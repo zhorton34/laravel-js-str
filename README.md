@@ -1,4 +1,4 @@
-<img src="https://img.icons8.com/fluent/42/000000/idea.png"></img> 
+<img src="https://img.icons8.com/fluent/28/000000/idea.png"></img> 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Travis](https://img.shields.io/travis/zhorton34/laravel-js-str/master.svg?style=flat-square)](https://travis-ci.org/zhorton34/laravel-js-str/builds)
@@ -7,10 +7,11 @@
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/laravel-js-str/blob/master/package.json)
 [![npm version](https://img.shields.io/npm/v/laravel-js-str.svg?style=flat-square)](http://badge.fury.io/js/laravel-js-str)
 [![HitCount](http://hits.dwyl.com/zhorton34/laravel-js-str.svg)](http://hits.dwyl.com/zhorton34/laravel-js-str)
+<img src="https://img.icons8.com/fluent/28/000000/idea.png"></img> 
 
 ---
 
-## <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
+# <img src="https://img.icons8.com/fluent/38/000000/ok.png"/> Project Goals
 
 ---
 
@@ -20,7 +21,7 @@
 
 ---
 
-## <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/42/000000/external-link.png"/> Tinkerable Demo</a>
+# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/38/000000/external-link.png"/> Tinkerable Demo</a>
 
 ---
 ![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
@@ -36,25 +37,24 @@
 
 ---
 
-## <img src="https://img.icons8.com/fluent/48/000000/download.png"/> Installation
+## <img src="https://img.icons8.com/fluent/38/000000/download.png"/> Installation
 
 ---
 
----
 
-### NPM
+### <img src="https://img.icons8.com/color/24/000000/npm.png"/> NPM
 
 ```bash
 npm install --save-dev laravel-js-str
 ```
 
-### Yarn
+### <img src="https://img.icons8.com/color/24/000000/clew.png"/> Yarn
 
 ```bash
 yarn add laravel-js-str --save
 ```
 
-### CDN
+### <img src="https://img.icons8.com/fluent/24/000000/download-2.png"/> CDN
 
 ```html
 <script src='https://unpkg.com/laravel-js-str@latest/build/index.min.js'></script>
