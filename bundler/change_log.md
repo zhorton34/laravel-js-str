@@ -11,4 +11,4 @@
 
 ---
 
-- Initial Setup
+- Initial Release

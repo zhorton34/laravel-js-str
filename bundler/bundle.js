@@ -10,6 +10,7 @@ ChangeLog([bundle('change_log')]);
 ReadMe([
 	'badges',
 	'header',
+	'api',
 	'installation',
 	'highlight',
 	'utilization',

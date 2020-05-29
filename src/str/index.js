@@ -273,8 +273,10 @@ class Str
 	{
 		let key = value;
 
-		if (typeof Str.snakeCache?.[key]?.[delimiter] !== 'undefined') {
-			return Str.snakeCache[key][delimiter];
+		if (typeof Str.snakeCache !== 'undefined') {
+			if (typeof Str.snakeCache[delimiter] !== 'undefined') {
+				return Str.snakeCache[key][delimiter];
+			}
 		}
 
 		if (! ctype_lower(value)) {
