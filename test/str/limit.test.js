@@ -1,7 +1,7 @@
 
 'use strict';
 
-const { Str } = require('../../src/str/index.js');
+const { Str } = require('../../dist/index.js');
 
 module.exports = (it, expect) => {
 	it('Should limit string length and append an end', () => {

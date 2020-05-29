@@ -1,7 +1,7 @@
 
 'use strict';
 
-const { Str } = require('../../src/str/index.js');
+const { Str } = require('../../dist/index.js');
 
 module.exports = (it, expect) => {
 	it('Should return the remainder of a string between the at and to occurrences', () => {

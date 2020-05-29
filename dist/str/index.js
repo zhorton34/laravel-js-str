@@ -41,7 +41,7 @@ var _require = require('locutus/php/pcre'),
 var _require2 = require('locutus/php/ctype'),
     ctype_lower = _require2.ctype_lower;
 
-var _require3 = require('../index.js'),
+var _require3 = require('../pluralizer/index.js'),
     Pluralizer = _require3.Pluralizer;
 
 var _require4 = require('locutus/php/strings'),

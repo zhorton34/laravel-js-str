@@ -4,9 +4,9 @@
 const { v4: uuidv4 } = 'uuid';
 const { preg_match } = require('locutus/php/pcre');
 const { ctype_lower } = require('locutus/php/ctype');
-const { Pluralizer } = require('../index.js');
-const { explode, substr_count } = require('locutus/php/strings');
 const Stringable = require('../stringable/index.js');
+const { Pluralizer } = require('../pluralizer/index.js');
+const { explode, substr_count } = require('locutus/php/strings');
 
 class Str
 {
