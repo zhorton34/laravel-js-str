@@ -9,7 +9,7 @@
 
 ---
 
-(https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
+![Link To Interactive Example Below](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
 
 
 ---
