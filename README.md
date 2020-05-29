@@ -10,7 +10,7 @@
 
 ---
 
-# <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
+## <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
 
 ---
 
@@ -20,7 +20,7 @@
 
 ---
 
-# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/42/000000/external-link.png"/> Tinkerable Demo</a>
+## <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/42/000000/external-link.png"/> Tinkerable Demo</a>
 
 ---
 ![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
@@ -28,7 +28,7 @@
 
 ---
 
-# <img src="https://img.icons8.com/cotton/64/000000/hot-coffee--v1.png"/> Laravel JS Str
+## <img src="https://img.icons8.com/cotton/64/000000/hot-coffee--v1.png"/> Laravel JS Str
 
 ---
 
@@ -36,7 +36,7 @@
 
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon installation section title'/> Installation
+## <img src="https://img.icons8.com/fluent/48/000000/download.png"/> Installation
 
 ---
 
