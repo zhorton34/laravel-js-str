@@ -1,35 +1,15 @@
 ---
 
-## Playground Examples
+# <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
 
 ---
-Curious, but not 100% on whether this is what you're looking for? 
 
-- [Laravel Illuminate/Str & Illuminate/Str::of in js (live example coming soon)](https://codepen.io/zhorton34/pen/jObRLdM)
+- [x] **Fluent**
+- [x] **Stringable**
+- [x] **Simplified**
+---
 
-> **The most powerful method is Str.of('example')**, allowing us to fluently chain Str methods together
+# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/38/000000/external-link.png"/> Tinkerable Demo</a>
 
-**Example**
-```js
-let { Str } = require('laravel-js-str');
-
-let home = 'https://planets.com';
-let title = 'hello mars, a cool world for you to visit, maybe?';
-
-let article = Str.of(title).replaceFirst(',', '')
-    .after('hello')
-    .before('for you')
-    .trim()
-    .start('/')
-    .finish('/')
-    .kebab();
- 
-let resource = home + article
-
-// resource value: 
-// 'https://planets.com/mars-a-cool-world/'
-//
-// article value:
-// Stringable: { value: 'https://planets.com/mars-a-cool-world-to-visit', replace, before, after, etc... }
-//
-```
+---
+![Code Pen Example](https://lh4.googleusercontent.com/GNH4vvaWgiG70gLrT_R4IQCTLQiuvpsMtAV0jFB6aaSD65acQXLo6cdX498XTc9RIaA9lhXLT_2vF7WElmeX=w1919-h952-rw "Package Gif Example")
