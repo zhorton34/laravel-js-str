@@ -1,7 +1,7 @@
 
 'use strict';
 
-const { Str } = require('../../src/str/index.js');
+const { Str } = require('../../dist/index.js');
 
 module.exports = (it, expect) => {
 	it('Should return true if pattern matches exact value or is a match', () => {

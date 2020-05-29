@@ -41,14 +41,14 @@ var _require = require('locutus/php/pcre'),
 var _require2 = require('locutus/php/ctype'),
     ctype_lower = _require2.ctype_lower;
 
-var _require3 = require('../index.js'),
+var Stringable = require('../stringable/index.js');
+
+var _require3 = require('../pluralizer/index.js'),
     Pluralizer = _require3.Pluralizer;
 
 var _require4 = require('locutus/php/strings'),
     explode = _require4.explode,
     substr_count = _require4.substr_count;
-
-var Stringable = require('../stringable/index.js');
 
 var Str = /*#__PURE__*/function () {
   function Str() {
@@ -344,13 +344,13 @@ var Str = /*#__PURE__*/function () {
   }, {
     key: "snake",
     value: function snake(value) {
-      var _Str$snakeCache, _Str$snakeCache$key;
-
       var delimiter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '_';
       var key = value;
 
-      if (typeof ((_Str$snakeCache = Str.snakeCache) === null || _Str$snakeCache === void 0 ? void 0 : (_Str$snakeCache$key = _Str$snakeCache[key]) === null || _Str$snakeCache$key === void 0 ? void 0 : _Str$snakeCache$key[delimiter]) !== 'undefined') {
-        return Str.snakeCache[key][delimiter];
+      if (typeof Str.snakeCache !== 'undefined') {
+        if (typeof Str.snakeCache[delimiter] !== 'undefined') {
+          return Str.snakeCache[key][delimiter];
+        }
       }
 
       if (!ctype_lower(value)) {
@@ -667,6 +667,7 @@ var Str = /*#__PURE__*/function () {
      *
      * @param  title
      * @param  separator
+     * @param  language
      *
      * @return string
      */
@@ -675,6 +676,7 @@ var Str = /*#__PURE__*/function () {
     key: "slug",
     value: function slug(title) {
       var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
+      var language = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'en';
       title = title.toLocaleString();
       var slug = Str.snake(title.replace(/@/g, '_at_')).replace(/_/g, separator).trim();
       return slug[0] === separator ? slug.slice(1, slug.length) : slug;

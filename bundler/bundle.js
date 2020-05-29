@@ -11,6 +11,7 @@ ReadMe([
 	'badges',
 	'header',
 	'installation',
+	'api',
 	'highlight',
 	'utilization',
 	'contribute',

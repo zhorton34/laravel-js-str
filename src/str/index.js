@@ -4,9 +4,9 @@
 const { v4: uuidv4 } = 'uuid';
 const { preg_match } = require('locutus/php/pcre');
 const { ctype_lower } = require('locutus/php/ctype');
-const { Pluralizer } = require('../index.js');
-const { explode, substr_count } = require('locutus/php/strings');
 const Stringable = require('../stringable/index.js');
+const { Pluralizer } = require('../pluralizer/index.js');
+const { explode, substr_count } = require('locutus/php/strings');
 
 class Str
 {
@@ -273,8 +273,10 @@ class Str
 	{
 		let key = value;
 
-		if (typeof Str.snakeCache?.[key]?.[delimiter] !== 'undefined') {
-			return Str.snakeCache[key][delimiter];
+		if (typeof Str.snakeCache !== 'undefined') {
+			if (typeof Str.snakeCache[delimiter] !== 'undefined') {
+				return Str.snakeCache[key][delimiter];
+			}
 		}
 
 		if (! ctype_lower(value)) {
@@ -562,10 +564,11 @@ class Str
 	 *
 	 * @param  title
 	 * @param  separator
+	 * @param  language
 	 *
 	 * @return string
 	 */
-	static slug(title, separator = '-')
+	static slug(title, separator = '-', language = 'en')
 	{
 		title = title.toLocaleString();
 

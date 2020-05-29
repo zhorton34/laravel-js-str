@@ -4,7 +4,7 @@
 
 ---
 
-**Data Get, Data Set, & Data Fill (Simple & Wild Card Examples)**
+**Fluent Str Manipulation is as easy as Str.of(str).after('ex').before('.').title().plural()**
 
 ---
 
@@ -13,11 +13,19 @@
 ---
 
 ```js
-// const { data_get, data_set, data_fill } = require('laravel-js-helpers');
+const { Str } = require('laravel-js-helpers');
+
+Str.of('hello world').studly().pluralStudly();
 ```
 
 ### CDN & Browser Setup
 
 ```html
 <script src="https://unpkg.com/laravel-js-str@latest/build/index.min.js"></script>
+
+<script>
+const { Str } = laravelJsStr;
+
+Str.of('hello world').camel();
+</script>
 ```

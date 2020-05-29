@@ -1,7 +1,7 @@
 
 'use strict';
 
-const { Str } = require('../../src/str/index.js');
+const { Str } = require('../../dist/index.js');
 
 module.exports = (it, expect) => {
 	it('Should cap string with value if it doesnt already exist', () => {
