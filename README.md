@@ -5,7 +5,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=git&color=success)](http://makeapullrequest.com)
 ![Version](https://img.shields.io/npm/v/laravel-js-str.svg?color=success&logo=npm)
-[![npm license](https://img.shields.io/npm/l/laravel-js-str.svg?color=blue)](http://badge.fury.io/js/laravel-js-str)
+[![npm license](https://img.shields.io/npm/l/laravel-js-str.svg?color=success)](http://badge.fury.io/js/laravel-js-str)
 <img src="https://img.icons8.com/fluent/28/000000/idea.png"></img> 
 ---
 
