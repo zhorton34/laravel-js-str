@@ -9,8 +9,10 @@
 
 ---
 
+### <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' alt='coffee icon installation section title'/> [Live Interactive Example](https://codepen.io/zhorton34/pen/LYpoxEY)
+
 ![Link To Interactive Example Below](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
-### [Live Interactive Example](https://codepen.io/zhorton34/pen/LYpoxEY)
+
 
 ---
 
