@@ -667,6 +667,7 @@ var Str = /*#__PURE__*/function () {
      *
      * @param  title
      * @param  separator
+     * @param  language
      *
      * @return string
      */
@@ -675,6 +676,7 @@ var Str = /*#__PURE__*/function () {
     key: "slug",
     value: function slug(title) {
       var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
+      var language = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'en';
       title = title.toLocaleString();
       var slug = Str.snake(title.replace(/@/g, '_at_')).replace(/_/g, separator).trim();
       return slug[0] === separator ? slug.slice(1, slug.length) : slug;

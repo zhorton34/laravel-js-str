@@ -562,10 +562,11 @@ class Str
 	 *
 	 * @param  title
 	 * @param  separator
+	 * @param  language
 	 *
 	 * @return string
 	 */
-	static slug(title, separator = '-')
+	static slug(title, separator = '-', language = 'en')
 	{
 		title = title.toLocaleString();
 
