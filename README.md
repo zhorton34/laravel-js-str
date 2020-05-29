@@ -1,27 +1,38 @@
+<img src="https://img.icons8.com/fluent/48/000000/idea.png"></img> 
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Travis](https://img.shields.io/travis/zhorton34/laravel-js-str/master.svg?style=flat-square)](https://travis-ci.org/zhorton34/laravel-js-str/builds)
 [![npm license](https://img.shields.io/npm/l/laravel-js-str.svg?style=flat-square)](http://badge.fury.io/js/laravel-js-str)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/laravel-js-str/blob/master/package.json)
 [![npm version](https://img.shields.io/npm/v/laravel-js-str.svg?style=flat-square)](http://badge.fury.io/js/laravel-js-str)
 [![HitCount](http://hits.dwyl.com/zhorton34/laravel-js-str.svg)](http://hits.dwyl.com/zhorton34/laravel-js-str)
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 ---
 
-# <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' alt='coffee icon installation section title'/> [Stringify Fluently, Simplify Joyfully](https://codepen.io/zhorton34/pen/LYpoxEY)
+# <img src="https://img.icons8.com/fluent/32/000000/ok.png"/> Project Goals
 
-![Link To Interactive Example Below](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
+---
+
+- [x] **Fluent**
+- [x] **Stringable**
+- [x] **Simplified**
+
+---
+
+# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/32/000000/external-link.png"/> Tinker</a>
+
+---
+![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
 
 
 ---
 
-# Laravel JS Str
+# <img src="https://img.icons8.com/cotton/64/000000/hot-coffee--v1.png"/> Laravel JS Str
 
 ---
 
 > _"Laravel's Illuminate\Str & Illuminate\Stringify Including Str.of() In Javascript"_
-
 
 ---
 
