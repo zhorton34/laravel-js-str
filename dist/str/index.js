@@ -344,13 +344,13 @@ var Str = /*#__PURE__*/function () {
   }, {
     key: "snake",
     value: function snake(value) {
-      var _Str$snakeCache, _Str$snakeCache$key;
-
       var delimiter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '_';
       var key = value;
 
-      if (typeof ((_Str$snakeCache = Str.snakeCache) === null || _Str$snakeCache === void 0 ? void 0 : (_Str$snakeCache$key = _Str$snakeCache[key]) === null || _Str$snakeCache$key === void 0 ? void 0 : _Str$snakeCache$key[delimiter]) !== 'undefined') {
-        return Str.snakeCache[key][delimiter];
+      if (typeof Str.snakeCache !== 'undefined') {
+        if (typeof Str.snakeCache[delimiter] !== 'undefined') {
+          return Str.snakeCache[key][delimiter];
+        }
       }
 
       if (!ctype_lower(value)) {

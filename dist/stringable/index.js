@@ -705,6 +705,10 @@ Stringable.prototype.get = function (key) {
   return this[key]();
 };
 /**
+ * Stringable.dirname
+ */
+
+/**
  * Used when returning as a string operation
  *
  * @returns string

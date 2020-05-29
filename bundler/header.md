@@ -4,4 +4,4 @@
 
 ---
 
-> _"Laravel's Illuminate\Str Illuminate\Stringify & Illuminate\Fluent In Javascript"_
+> _"Laravel's Illuminate\Str & Illuminate\Stringify Including Str.of() In Javascript"_
