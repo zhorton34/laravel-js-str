@@ -4,11 +4,192 @@
 const { v4: uuidv4 } = 'uuid';
 const pluralize = require('pluralize');
 const { collect } = require('collect.js');
-const { empty } = require('locutus/php/var');
-const { preg_match } = require('locutus/php/pcre');
-const { ctype_lower } = require('locutus/php/ctype');
-const { array_merge } = require('locutus/php/array');
-const { str_replace, trim, ltrim, rtrim, explode, substr_count } = require('locutus/php/strings');
+const preg_match = require('locutus/php/pcre/preg_match.js');
+const ctype_lower = require('locutus/php/ctype/ctype_lower.js');
+const substr_count = require('locutus/php/strings/substr_count.js');
+
+function str_replace (search, replace, subject, countObj) {
+	let i = 0
+	let j = 0
+	let temp = ''
+	let repl = ''
+	let sl = 0
+	let fl = 0
+	let f = [].concat(search)
+	let r = [].concat(replace)
+	let s = subject
+	let ra = Object.prototype.toString.call(r) === '[object Array]'
+	let sa = Object.prototype.toString.call(s) === '[object Array]'
+	s = [].concat(s)
+
+	let $global = (typeof window !== 'undefined' ? window : global)
+	$global.$locutus = $global.$locutus || {}
+	let $locutus = $global.$locutus
+	$locutus.php = $locutus.php || {}
+
+	if (typeof (search) === 'object' && typeof (replace) === 'string') {
+		temp = replace
+		replace = []
+		for (i = 0; i < search.length; i += 1) {
+			replace[i] = temp
+		}
+		temp = ''
+		r = [].concat(replace)
+		ra = Object.prototype.toString.call(r) === '[object Array]'
+	}
+
+	if (typeof countObj !== 'undefined') {
+		countObj.value = 0
+	}
+
+	for (i = 0, sl = s.length; i < sl; i++) {
+		if (s[i] === '') {
+			continue
+		}
+		for (j = 0, fl = f.length; j < fl; j++) {
+			temp = s[i] + ''
+			repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
+			s[i] = (temp).split(f[j]).join(repl)
+			if (typeof countObj !== 'undefined') {
+				countObj.value += ((temp.split(f[j])).length - 1)
+			}
+		}
+	}
+	return sa ? s : s[0]
+};
+
+function explode (delimiter, string, limit) {
+	if (arguments.length < 2 ||
+		typeof delimiter === 'undefined' ||
+		typeof string === 'undefined') {
+		return null
+	}
+	if (delimiter === '' ||
+		delimiter === false ||
+		delimiter === null) {
+		return false
+	}
+	if (typeof delimiter === 'function' ||
+		typeof delimiter === 'object' ||
+		typeof string === 'function' ||
+		typeof string === 'object') {
+		return {
+			0: ''
+		}
+	}
+	if (delimiter === true) {
+		delimiter = '1'
+	}
+
+	// Here we go...
+	delimiter += ''
+	string += ''
+
+	var s = string.split(delimiter)
+
+	if (typeof limit === 'undefined') return s
+
+	// Support for limit
+	if (limit === 0) limit = 1
+
+	// Positive limit
+	if (limit > 0) {
+		if (limit >= s.length) {
+			return s
+		}
+		return s
+			.slice(0, limit - 1)
+			.concat([s.slice(limit - 1)
+				.join(delimiter)
+			])
+	}
+
+	// Negative limit
+	if (-limit >= s.length) {
+		return []
+	}
+
+	s.splice(s.length + limit);
+	return s
+};
+function trim (str, charlist) {
+
+	var whitespace = [
+		' ',
+		'\n',
+		'\r',
+		'\t',
+		'\f',
+		'\x0b',
+		'\xa0',
+		'\u2000',
+		'\u2001',
+		'\u2002',
+		'\u2003',
+		'\u2004',
+		'\u2005',
+		'\u2006',
+		'\u2007',
+		'\u2008',
+		'\u2009',
+		'\u200a',
+		'\u200b',
+		'\u2028',
+		'\u2029',
+		'\u3000'
+	].join('')
+	var l = 0
+	var i = 0
+	str += ''
+
+	if (charlist) {
+		whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')
+	}
+
+	l = str.length
+	for (i = 0; i < l; i++) {
+		if (whitespace.indexOf(str.charAt(i)) === -1) {
+			str = str.substring(i)
+			break
+		}
+	}
+
+	l = str.length
+	for (i = l - 1; i >= 0; i--) {
+		if (whitespace.indexOf(str.charAt(i)) === -1) {
+			str = str.substring(0, i + 1)
+			break
+		}
+	}
+
+	return whitespace.indexOf(str.charAt(0)) === -1 ? str : ''
+}
+
+function ltrim (str, charlist) {
+	//  discuss at: https://locutus.io/php/ltrim/
+	// original by: Kevin van Zonneveld (https://kvz.io)
+	//    input by: Erkekjetter
+	// improved by: Kevin van Zonneveld (https://kvz.io)
+	// bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+	//   example 1: ltrim('    Kevin van Zonneveld    ')
+	//   returns 1: 'Kevin van Zonneveld    '
+
+	charlist = !charlist ? ' \\s\u00A0' : (charlist + '')
+		.replace(/([[\]().?/*{}+$^:])/g, '$1')
+
+	var re = new RegExp('^[' + charlist + ']+', 'g')
+
+	return (str + '')
+		.replace(re, '')
+}
+
+function rtrim(str, charlist) {
+	charlist = !charlist ? ' \\s\u00A0' : (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '\\$1');
+
+	const re = new RegExp('[' + charlist + ']+$', 'g');
+
+	return (str + '').replace(re, '')
+}
 
 /**
  * @return {string}
@@ -201,7 +382,7 @@ Stringable.prototype.split = function(pattern, limit = -1, flags = 0)
 {
 	let segments = this.value.split(new RegExp(pattern));
 
-	return ! empty(segments) ? collect(segments) : collect();
+	return ! (typeof segments === 'undefined' || segments.length < 1) ? collect(segments) : collect();
 };
 
 /**
@@ -559,7 +740,7 @@ Stringable.prototype.substrCount = function(needle, offset = null, length = null
  */
 Stringable.trim = function(characters = null)
 {
-	return new Stringable(trim(...array_merge([this.value], arguments)));
+	return new Stringable(trim(...[this.value, ...arguments]));
 };
 
 /**
@@ -571,7 +752,7 @@ Stringable.trim = function(characters = null)
  */
 Stringable.ltrim = function(characters = null)
 {
-	return new Stringable(ltrim(...array_merge([this.value], arguments)));
+	return new Stringable(ltrim(...[this.value, ...arguments]));
 };
 
 /**
@@ -583,7 +764,7 @@ Stringable.ltrim = function(characters = null)
  */
 Stringable.rtrim = function(characters = null)
 {
-	return new Stringable(rtrim(...array_merge([this.value], arguments)));
+	return new Stringable(rtrim(...[this.value, ...arguments]));
 };
 
 /**
@@ -1558,4 +1739,6 @@ class Str
 	}
 }
 
+module.exports = Str;
 module.exports.Str = Str;
+module.exports.default = Str;

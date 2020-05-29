@@ -6,9 +6,21 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
@@ -20,17 +32,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var _uuid = 'uuid',
     uuidv4 = _uuid.v4;
@@ -40,25 +42,163 @@ var pluralize = require('pluralize');
 var _require = require('collect.js'),
     collect = _require.collect;
 
-var _require2 = require('locutus/php/var'),
-    empty = _require2.empty;
+var preg_match = require('locutus/php/pcre/preg_match.js');
 
-var _require3 = require('locutus/php/pcre'),
-    preg_match = _require3.preg_match;
+var ctype_lower = require('locutus/php/ctype/ctype_lower.js');
 
-var _require4 = require('locutus/php/ctype'),
-    ctype_lower = _require4.ctype_lower;
+var substr_count = require('locutus/php/strings/substr_count.js');
 
-var _require5 = require('locutus/php/array'),
-    array_merge = _require5.array_merge;
+function str_replace(search, replace, subject, countObj) {
+  var i = 0;
+  var j = 0;
+  var temp = '';
+  var repl = '';
+  var sl = 0;
+  var fl = 0;
+  var f = [].concat(search);
+  var r = [].concat(replace);
+  var s = subject;
+  var ra = Object.prototype.toString.call(r) === '[object Array]';
+  var sa = Object.prototype.toString.call(s) === '[object Array]';
+  s = [].concat(s);
+  var $global = typeof window !== 'undefined' ? window : global;
+  $global.$locutus = $global.$locutus || {};
+  var $locutus = $global.$locutus;
+  $locutus.php = $locutus.php || {};
 
-var _require6 = require('locutus/php/strings'),
-    str_replace = _require6.str_replace,
-    trim = _require6.trim,
-    ltrim = _require6.ltrim,
-    rtrim = _require6.rtrim,
-    explode = _require6.explode,
-    substr_count = _require6.substr_count;
+  if (_typeof(search) === 'object' && typeof replace === 'string') {
+    temp = replace;
+    replace = [];
+
+    for (i = 0; i < search.length; i += 1) {
+      replace[i] = temp;
+    }
+
+    temp = '';
+    r = [].concat(replace);
+    ra = Object.prototype.toString.call(r) === '[object Array]';
+  }
+
+  if (typeof countObj !== 'undefined') {
+    countObj.value = 0;
+  }
+
+  for (i = 0, sl = s.length; i < sl; i++) {
+    if (s[i] === '') {
+      continue;
+    }
+
+    for (j = 0, fl = f.length; j < fl; j++) {
+      temp = s[i] + '';
+      repl = ra ? r[j] !== undefined ? r[j] : '' : r[0];
+      s[i] = temp.split(f[j]).join(repl);
+
+      if (typeof countObj !== 'undefined') {
+        countObj.value += temp.split(f[j]).length - 1;
+      }
+    }
+  }
+
+  return sa ? s : s[0];
+}
+
+;
+
+function explode(delimiter, string, limit) {
+  if (arguments.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+    return null;
+  }
+
+  if (delimiter === '' || delimiter === false || delimiter === null) {
+    return false;
+  }
+
+  if (typeof delimiter === 'function' || _typeof(delimiter) === 'object' || typeof string === 'function' || _typeof(string) === 'object') {
+    return {
+      0: ''
+    };
+  }
+
+  if (delimiter === true) {
+    delimiter = '1';
+  } // Here we go...
+
+
+  delimiter += '';
+  string += '';
+  var s = string.split(delimiter);
+  if (typeof limit === 'undefined') return s; // Support for limit
+
+  if (limit === 0) limit = 1; // Positive limit
+
+  if (limit > 0) {
+    if (limit >= s.length) {
+      return s;
+    }
+
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(delimiter)]);
+  } // Negative limit
+
+
+  if (-limit >= s.length) {
+    return [];
+  }
+
+  s.splice(s.length + limit);
+  return s;
+}
+
+;
+
+function trim(str, charlist) {
+  var whitespace = [' ', '\n', '\r', '\t', '\f', '\x0b', '\xa0', "\u2000", "\u2001", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200A", "\u200B", "\u2028", "\u2029", "\u3000"].join('');
+  var l = 0;
+  var i = 0;
+  str += '';
+
+  if (charlist) {
+    whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1');
+  }
+
+  l = str.length;
+
+  for (i = 0; i < l; i++) {
+    if (whitespace.indexOf(str.charAt(i)) === -1) {
+      str = str.substring(i);
+      break;
+    }
+  }
+
+  l = str.length;
+
+  for (i = l - 1; i >= 0; i--) {
+    if (whitespace.indexOf(str.charAt(i)) === -1) {
+      str = str.substring(0, i + 1);
+      break;
+    }
+  }
+
+  return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
+}
+
+function ltrim(str, charlist) {
+  //  discuss at: https://locutus.io/php/ltrim/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Erkekjetter
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //   example 1: ltrim('    Kevin van Zonneveld    ')
+  //   returns 1: 'Kevin van Zonneveld    '
+  charlist = !charlist ? " \\s\xA0" : (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1');
+  var re = new RegExp('^[' + charlist + ']+', 'g');
+  return (str + '').replace(re, '');
+}
+
+function rtrim(str, charlist) {
+  charlist = !charlist ? " \\s\xA0" : (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '\\$1');
+  var re = new RegExp('[' + charlist + ']+$', 'g');
+  return (str + '').replace(re, '');
+}
 /**
  * @return {string}
  */
@@ -267,7 +407,7 @@ Stringable.prototype.split = function (pattern) {
   var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
   var flags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
   var segments = this.value.split(new RegExp(pattern));
-  return !empty(segments) ? collect(segments) : collect();
+  return !(typeof segments === 'undefined' || segments.length < 1) ? collect(segments) : collect();
 };
 /**
  * Cap a string with a single instance of a given value
@@ -635,7 +775,7 @@ Stringable.prototype.substrCount = function (needle) {
 
 Stringable.trim = function () {
   var characters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  return new Stringable(trim.apply(void 0, _toConsumableArray(array_merge([this.value], arguments))));
+  return new Stringable(trim.apply(void 0, [this.value].concat(Array.prototype.slice.call(arguments))));
 };
 /**
  * Left trim the string of given characters.
@@ -648,7 +788,7 @@ Stringable.trim = function () {
 
 Stringable.ltrim = function () {
   var characters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  return new Stringable(ltrim.apply(void 0, _toConsumableArray(array_merge([this.value], arguments))));
+  return new Stringable(ltrim.apply(void 0, [this.value].concat(Array.prototype.slice.call(arguments))));
 };
 /**
  * Right trim the string of given characters.
@@ -661,7 +801,7 @@ Stringable.ltrim = function () {
 
 Stringable.rtrim = function () {
   var characters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  return new Stringable(rtrim.apply(void 0, _toConsumableArray(array_merge([this.value], arguments))));
+  return new Stringable(rtrim.apply(void 0, [this.value].concat(Array.prototype.slice.call(arguments))));
 };
 /**
  * Make a string's first character uppercase.
@@ -1701,4 +1841,6 @@ var Str = /*#__PURE__*/function () {
 Str.snakeCache = {};
 Str.camelCache = {};
 Str.studlyCache = {};
+module.exports = Str;
 module.exports.Str = Str;
+module.exports["default"] = Str;

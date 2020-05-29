@@ -9,7 +9,7 @@
     "test": "mocha test/tests.js",
     "transpile": "babel src --quiet --out-dir dist",
     "readme": "node bundler/bundle.js",
-    "bundle": "webpack-cli dist/index.js --output build/index.js --mode development --output-library laravelJsStr",
+    "bundle": "webpack-cli dist/index.js --output build/index.js --mode production --output-library laravelJsStr",
     "uglify": "uglifyjs build/index.js --compress --mangle --output build/index.min.js",
     "build": "npm run transpile && npm run bundle && npm run uglify && npm run readme",
     "coverage": "npm run transpile && nyc mocha test/tests.js",
@@ -59,7 +59,12 @@
       "transform-class-properties"
     ]
   },
+  "dependencies": {
+    "collect.js": "^4.25.0",
+    "pluralize": "^8.0.0"
+  },
   "devDependencies": {
+    "locutus": "^2.0.11",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/polyfill": "^7.8.3",
@@ -67,12 +72,9 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "benchmark": "^2.1.0",
     "chai": "^4.2.0",
-    "collect.js": "^4.25.0",
     "hoax.js": "^1.0.0",
-    "locutus": "^2.0.11",
     "mocha": "^3.5.2",
     "nyc": "^11.0.2",
-    "pluralize": "^8.0.0",
     "uglify-js": "^3.2.2",
     "uuid": "^8.1.0",
     "webpack": "^4.43.0",
