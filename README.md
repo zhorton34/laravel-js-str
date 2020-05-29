@@ -10,7 +10,7 @@
 ---
 
 ![Link To Interactive Example Below](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
-[Live Interactive Example](https://codepen.io/zhorton34/pen/LYpoxEY)
+### [Live Interactive Example](https://codepen.io/zhorton34/pen/LYpoxEY)
 
 ---
 
