@@ -11,7 +11,7 @@
 
 ---
 
-# <img src="https://img.icons8.com/fluent/38/000000/ok.png"/> Project Goals
+# <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
 
 ---
 
@@ -24,12 +24,12 @@
 # <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/38/000000/external-link.png"/> Tinkerable Demo</a>
 
 ---
-![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
+![Code Pen Example](https://lh4.googleusercontent.com/GNH4vvaWgiG70gLrT_R4IQCTLQiuvpsMtAV0jFB6aaSD65acQXLo6cdX498XTc9RIaA9lhXLT_2vF7WElmeX=w1919-h952-rw "Package Gif Example")
 
 
 ---
 
-## <img src="https://img.icons8.com/cotton/64/000000/hot-coffee--v1.png"/> Laravel JS Str
+## <img src="https://img.icons8.com/cotton/58/000000/hot-coffee--v1.png"/> Laravel JS Str
 
 ---
 
@@ -42,19 +42,19 @@
 ---
 
 
-### <img src="https://img.icons8.com/color/24/000000/npm.png"/> NPM
+### <img src="https://img.icons8.com/color/21/000000/npm.png"/> NPM
 
 ```bash
 npm install --save-dev laravel-js-str
 ```
 
-### <img src="https://img.icons8.com/color/24/000000/clew.png"/> Yarn
+### <img src="https://img.icons8.com/color/21/000000/clew.png"/> Yarn
 
 ```bash
 yarn add laravel-js-str --save
 ```
 
-### <img src="https://img.icons8.com/fluent/24/000000/download-2.png"/> CDN
+### <img src="https://img.icons8.com/fluent/21/000000/download-2.png"/> CDN
 
 ```html
 <script src='https://unpkg.com/laravel-js-str@latest/build/index.min.js'></script>
