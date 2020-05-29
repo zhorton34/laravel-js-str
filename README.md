@@ -20,7 +20,7 @@
 
 ---
 
-# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/32/000000/external-link.png"/> Tinker</a>
+# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/32/000000/external-link.png"/> Tinkerable Demo</a>
 
 ---
 ![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
