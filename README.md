@@ -6,9 +6,9 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=git&color=success)](http://makeapullrequest.com)
 ![Version](https://img.shields.io/npm/v/laravel-js-str.svg?color=success&logo=npm)
-[![Code Pen](https://img.shields.io/badge/codepen/zhorton34/laravel-js-str/master.svg?logo=codepen)](https://codepen.io/zhorton34/pen/LYpoxEY)
 [![npm license](https://img.shields.io/npm/l/laravel-js-str.svg?color=success)](http://badge.fury.io/js/laravel-js-str)
 <img src="https://img.icons8.com/fluent/28/000000/idea.png"></img> 
+[![Code Pen](https://img.shields.io/badge/codepen/laravel-inspired-example/master.svg?logo=codepen)](https://codepen.io/zhorton34/pen/LYpoxEY)
 ---
 
 # <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
