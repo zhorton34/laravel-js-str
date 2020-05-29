@@ -1,4 +1,4 @@
-<img src="https://img.icons8.com/fluent/48/000000/idea.png"></img> 
+<img src="https://img.icons8.com/fluent/42/000000/idea.png"></img> 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![Travis](https://img.shields.io/travis/zhorton34/laravel-js-str/master.svg?style=flat-square)](https://travis-ci.org/zhorton34/laravel-js-str/builds)
@@ -10,7 +10,7 @@
 
 ---
 
-# <img src="https://img.icons8.com/fluent/32/000000/ok.png"/> Project Goals
+# <img src="https://img.icons8.com/fluent/42/000000/ok.png"/> Project Goals
 
 ---
 
@@ -20,7 +20,7 @@
 
 ---
 
-# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/32/000000/external-link.png"/> Tinkerable Demo</a>
+# <a href='https://codepen.io/zhorton34/pen/LYpoxEY'><img src="https://img.icons8.com/fluent/42/000000/external-link.png"/> Tinkerable Demo</a>
 
 ---
 ![Code Pen Example](https://github.com/zhorton34/laravel-js-str/raw/master/example.gif "Package Gif Example")
