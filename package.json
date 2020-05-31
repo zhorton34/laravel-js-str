@@ -61,10 +61,10 @@
   },
   "dependencies": {
     "collect.js": "^4.25.0",
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "locutus": "^2.0.11"
   },
   "devDependencies": {
-    "locutus": "^2.0.11",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/polyfill": "^7.8.3",
